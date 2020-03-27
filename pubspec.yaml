@@ -28,6 +28,7 @@ dependencies:
   shimmer: ^1.1.0
   intl: ^0.16.1
   lottie: ^0.3.2
+  kf_drawer: ^1.1.2
 
 dev_dependencies:
   flutter_test:

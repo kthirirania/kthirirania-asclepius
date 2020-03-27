@@ -1,13 +1,18 @@
 import 'package:asclepius/models/tab.dart';
 import 'package:asclepius/models/tip.dart';
+import 'package:asclepius/widgets/load_image.dart';
 import 'package:asclepius/widgets/prescription_widget.dart';
-import 'package:asclepius/widgets/toolbar.dart';
 import 'package:asclepius/widgets/under_construction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kf_drawer/kf_drawer.dart';
 import 'package:lottie/lottie.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends KFDrawerContent {
+  HomeScreen({
+    Key key,
+  });
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -58,127 +63,127 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[50],
-      child: Stack(
-        //crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0, left: 16.0, top: 8.0),
-            child: Toolbar(),
-          ),
-
-          /*
-           if (!tip.isVisible)
-                            InkWell(
-                              onTap: () => setState(() {
-                                tip.isVisible = true;
-                              }),
-                              child: SvgPicture.asset(
-                                'assets/images/care.svg',
-                                height: 36,
-                                width: 36,
-                              ),
-                            ),
-           */
-          Container(
-            margin: EdgeInsets.only(top: 50),
-            child: SingleChildScrollView(
-              physics: ScrollPhysics(),
-              child: Container(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 16.0, right: 16, left: 16, bottom: 6),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              RichText(
-                                text: TextSpan(
-                                  children: <TextSpan>[
-                                    TextSpan(
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          color: Colors.grey[50],
+          child: Stack(
+            children: <Widget>[
+              Padding(
+                padding:
+                    const EdgeInsets.only(right: 16.0, left: 16.0, top: 8.0),
+                child: getToolBar(),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 50),
+                child: SingleChildScrollView(
+                  physics: ScrollPhysics(),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 16.0, right: 16, left: 16, bottom: 6),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                SvgPicture.asset(
+                                  'assets/images/cloudy.svg',
+                                  height: 52,
+                                  width: 52,
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w300,
+                                              color: Colors.black,
+                                              fontSize: 22,
+                                            ),
+                                            text: 'Morning, ',
+                                          ),
+                                          TextSpan(
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black,
+                                              fontSize: 22,
+                                            ),
+                                            text: '',
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 6,
+                                    ),
+                                    Text(
+                                      'Wednesday, 25 March 2020',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w300,
                                         color: Colors.black,
-                                        fontSize: 22,
+                                        fontSize: 16,
                                       ),
-                                      text: 'Morning, ',
-                                    ),
-                                    TextSpan(
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.black,
-                                        fontSize: 22,
-                                      ),
-                                      text: '',
                                     ),
                                   ],
                                 ),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                'Wednesday, 25 March 2020',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.black,
-                                  fontSize: 16,
+                              ],
+                            ),
+                            if (!tip.isVisible)
+                              InkWell(
+                                onTap: () => setState(() {
+                                  tip.isVisible = true;
+                                }),
+                                child: SvgPicture.asset(
+                                  'assets/images/care.svg',
+                                  height: 36,
+                                  width: 36,
                                 ),
                               ),
-                            ],
-                          ),
-                          if (!tip.isVisible)
-                            InkWell(
-                              onTap: () => setState(() {
-                                tip.isVisible = true;
-                              }),
-                              child: SvgPicture.asset(
-                                'assets/images/care.svg',
-                                height: 36,
-                                width: 36,
-                              ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    if (tip.isVisible)
+                      if (tip.isVisible)
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: getTip(tip),
+                        ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            right: 16.0, left: 16.0, top: 16.0, bottom: 16.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            for (var i = 0; i < tabs.length; i++)
+                              if (tabs[i].index == currentIndex)
+                                getActiveButton(tabs[i])
+                              else
+                                getInactiveButton(tabs[i])
+                          ],
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
-                        child: getTip(tip),
+                        child: getCurrentTab(),
                       ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          right: 16.0, left: 16.0, top: 16.0, bottom: 16.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          for (var i = 0; i < tabs.length; i++)
-                            if (tabs[i].index == currentIndex)
-                              getActiveButton(tabs[i])
-                            else
-                              getInactiveButton(tabs[i])
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: getCurrentTab(),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ),
-          )
-        ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -191,6 +196,41 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       default:
         return UnderConstruction();
     }
+  }
+
+  Widget getToolBar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        IconButton(
+          icon: SvgPicture.asset('assets/images/menu.svg',
+              color: Colors.black, width: 20, height: 20),
+          onPressed: widget.onMenuPressed,
+        ),
+        Row(
+          children: <Widget>[
+            SvgPicture.asset('assets/images/search.svg',
+                color: Colors.black, width: 18, height: 18),
+            SizedBox(
+              width: 8.0,
+            ),
+            SvgPicture.asset('assets/images/bell.svg',
+                color: Colors.black, width: 20, height: 20),
+            SizedBox(
+              width: 8.0,
+            ),
+            LoadImage(
+              "https://drive.google.com/uc?export=view&id=1bcQaCdWNUsXF2he704ZfUrofxw6KV9KH",
+              30,
+              30,
+              0,
+              30,
+              30,
+            ),
+          ],
+        )
+      ],
+    );
   }
 
   Widget getTip(Tip tip) {

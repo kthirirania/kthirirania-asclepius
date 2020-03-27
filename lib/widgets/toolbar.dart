@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kf_drawer/kf_drawer.dart';
 
 import 'load_image.dart';
 
-class Toolbar extends StatefulWidget {
+class Toolbar extends KFDrawerContent {
+  Toolbar({
+    Key key,
+  });
+
   @override
   _ToolbarState createState() => _ToolbarState();
 }
@@ -14,8 +19,11 @@ class _ToolbarState extends State<Toolbar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        SvgPicture.asset('assets/images/menu.svg',
-            color: Colors.black, width: 20, height: 20),
+        IconButton(
+          icon: SvgPicture.asset('assets/images/menu.svg',
+              color: Colors.black, width: 20, height: 20),
+          onPressed: widget.onMenuPressed,
+        ),
         Row(
           children: <Widget>[
             SvgPicture.asset('assets/images/search.svg',
