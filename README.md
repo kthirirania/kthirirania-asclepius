@@ -15,5 +15,21 @@ Asclepius is a flutter application dedicated to prescriptions' management. This 
 
 You can download or clone this project and play around with it.
 
+In you terminal CD to your directory and run this CMD:
+
+git clone https://github.com/kthirirania/kthirirania-asclepius.git
+
+Make sure that you already installed flutter in your machine.
+
+Open a Simulator or plugin your phone and inside the ssclepius folder run:
+
+flutter run
+
+If you have multiple connected devices run:
+
+flutter devices
+
+flutter run -f [device_id]
+
 
 
