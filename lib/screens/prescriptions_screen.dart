@@ -1,6 +1,7 @@
 import 'package:asclepius/models/perscription.dart';
 import 'package:asclepius/widgets/load_image.dart';
 import 'package:asclepius/widgets/prescription_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kf_drawer/kf_drawer.dart';
@@ -15,6 +16,18 @@ class PrescriptionScreen extends KFDrawerContent {
 }
 
 class _CalendarPageState extends State<PrescriptionScreen> {
+  bool animating = false;
+
+  @override
+  void initState() {
+    super.initState();
+    /*
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _showDialog();
+    });
+    */
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +41,7 @@ class _CalendarPageState extends State<PrescriptionScreen> {
                 child: getToolBar(),
               ),
               Container(
-                margin: EdgeInsets.only(top: 50),
+                margin: EdgeInsets.only(top: 50, bottom: 0),
                 child: SingleChildScrollView(
                   physics: ScrollPhysics(),
                   child: Column(
@@ -42,7 +55,7 @@ class _CalendarPageState extends State<PrescriptionScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            right: 16.0, left: 16, top: 24, bottom: 24),
+                            right: 16.0, left: 16, top: 24, bottom: 44),
                         child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
@@ -61,10 +74,171 @@ class _CalendarPageState extends State<PrescriptionScreen> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(right: 16.0),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      _showDialog();
+                    },
+                    child: SvgPicture.asset(
+                      'assets/images/add.svg',
+                      height: 52,
+                      width: 52,
+                    ),
+                    backgroundColor: Colors.red,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  _showDialog() async {
+    /*
+    if (Platform.isIOS)
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: Text('Add Your New Prescription'),
+            content: Text(
+                'Your current location will be displayed on the map and used for directions, nearby search results, and estimated travel times.'),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: Text('Don\'t Allow'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              CupertinoDialogAction(
+                child: Text('Allow'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    */
+
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[100],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(16.0),
+            ),
+          ),
+          title: Center(
+            child: Text(
+              "Add Your New Perspection",
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+          content: Padding(
+            padding:
+                const EdgeInsets.only(top: 8.0, bottom: 8, left: 8, right: 8),
+            child: AnimatedContainer(
+              height: animating ? 600.0 : 120.0,
+              width: animating ? 300.0 : 260.0,
+              duration: Duration(seconds: 2),
+              curve: Curves.fastOutSlowIn,
+              child: Container(
+                height: animating ? 600.0 : 120.0,
+                width: animating ? 300.0 : 260.0,
+                child: Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      InkWell(
+                        onTap: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey[300],
+                                    spreadRadius: 2.0,
+                                    blurRadius: 1.0,
+                                    offset: Offset(0, 1),
+                                  ),
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.all(14.0),
+                              child: SvgPicture.asset(
+                                'assets/images/qr-code.svg',
+                                height: 68,
+                                width: 68,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => setState(() {
+                          animating = true;
+                        }),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey[300],
+                                    spreadRadius: 2.0,
+                                    blurRadius: 1.0,
+                                    offset: Offset(0, 1),
+                                  ),
+                                ]),
+                            child: Padding(
+                              padding: const EdgeInsets.all(14.0),
+                              child: SvgPicture.asset(
+                                'assets/images/add.svg',
+                                height: 68,
+                                width: 68,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          /*
+            actions: <Widget>[
+              FlatButton(
+                child: new Text("Cancel"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+            */
+        );
+      },
     );
   }
 

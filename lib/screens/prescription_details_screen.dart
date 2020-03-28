@@ -27,18 +27,66 @@ class _PrescriptionDetailsScreenState extends State<PrescriptionDetailsScreen> {
         right: false,
         left: false,
         child: Stack(
-          //mainAxisSize: MainAxisSize.max,
-          //crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             getHeader(),
             Container(
-              margin: EdgeInsets.only(top: isPortrait ? 200 : 168),
+              margin: EdgeInsets.only(
+                top: isPortrait ? 200 : 168,
+              ),
               child: SingleChildScrollView(
                 physics: ScrollPhysics(),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    // PrescriptionWidget(prescription: widget.prescription),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24.0, top: 12),
+                      child: Text(
+                        'Prescription\'s Items',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24.0, top: 4),
+                      child: Text(
+                        widget.prescription.date,
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w300),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0, left: 22),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.pinkAccent[100],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(60),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 4, bottom: 4, right: 10, left: 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              widget.prescription.prescriptionItems.length > 1
+                                  ? Text(
+                                      widget.prescription.prescriptionItems
+                                              .length
+                                              .toString() +
+                                          ' Items',
+                                      style: TextStyle(color: Colors.white),
+                                    )
+                                  : Text(
+                                      '1 Item',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                     getListPresItems(context),
                   ],
                 ),
@@ -218,7 +266,7 @@ class _PrescriptionDetailsScreenState extends State<PrescriptionDetailsScreen> {
 
     Widget listLayout = Padding(
       padding: isPortrait
-          ? EdgeInsets.only(right: 4, left: 8)
+          ? EdgeInsets.only(right: 16, left: 24)
           : EdgeInsets.only(right: 48, left: 32),
       child: ListView.builder(
           padding: EdgeInsets.all(0),
