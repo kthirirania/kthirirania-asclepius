@@ -2,12 +2,14 @@
 Asclepius is a flutter application dedicated to prescriptions' management. This app is open source and made for educational purposes only.
 
 <p align="center">
-  <img src="pics/7.gif" width="400" title="hover text">
+  <img src="pics/7.gif" width="400" title="App GIF">
 </p>
 
-![alt text](pics/1.png?raw=true "Asclepius GIF")
-![alt text](pics/3.png?raw=true "Asclepius GIF")
-![alt text](pics/5.png?raw=true "Asclepius GIF")
+<p align="center">
+ <img src="pics/7.gif" width="300" title="screenshot">
+ <img src="pics/7.gif" width="300" title="screenshot">
+ <img src="pics/7.gif" width="300" title="screenshot">
+</p>
 
 ## Getting Started
 
