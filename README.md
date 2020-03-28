@@ -6,9 +6,9 @@ Asclepius is a flutter application dedicated to prescriptions' management. This 
 </p>
 
 <p align="center">
- <img src="pics/1.gif" width="300" title="screenshot">
- <img src="pics/3.gif" width="300" title="screenshot">
- <img src="pics/5.gif" width="300" title="screenshot">
+ <img src="pics/1.png" width="300" title="screenshot">
+ <img src="pics/3.png" width="300" title="screenshot">
+ <img src="pics/5.png" width="300" title="screenshot">
 </p>
 
 ## Getting Started
