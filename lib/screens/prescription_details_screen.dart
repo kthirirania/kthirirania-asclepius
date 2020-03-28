@@ -1,44 +1,45 @@
+import 'package:asclepius/models/perscription.dart';
+import 'package:asclepius/widgets/prescription_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Test extends StatefulWidget {
+class PrescriptionDetailsScreen extends StatefulWidget {
+  Prescription prescription;
+
+  PrescriptionDetailsScreen(this.prescription);
+
   @override
-  _TestState createState() => _TestState();
+  _PrescriptionDetailsScreenState createState() =>
+      _PrescriptionDetailsScreenState();
 }
 
-class _TestState extends State<Test> {
+class _PrescriptionDetailsScreenState extends State<PrescriptionDetailsScreen> {
+  bool isPortrait = true;
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         top: false,
         right: false,
         left: false,
         child: Stack(
+          //mainAxisSize: MainAxisSize.max,
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             getHeader(),
             Container(
-              margin: EdgeInsets.only(top: 170),
+              margin: EdgeInsets.only(top: isPortrait ? 200 : 168),
               child: SingleChildScrollView(
                 physics: ScrollPhysics(),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    Container(
-                      height: 100,
-                      child: GridView.count(
-                        crossAxisCount: 2,
-                        physics: NeverScrollableScrollPhysics(),
-                        children: List.generate(100, (index) {
-                          return Center(
-                            child: Text(
-                              'Item $index',
-                              style: Theme.of(context).textTheme.headline,
-                            ),
-                          );
-                        }),
-                      ),
-                    ),
+                    // PrescriptionWidget(prescription: widget.prescription),
+                    getListPresItems(context),
                   ],
                 ),
               ),
@@ -65,7 +66,9 @@ class _TestState extends State<Test> {
             ),
           ]),
       child: Padding(
-        padding: EdgeInsets.only(right: 48.0, left: 32, top: 32, bottom: 30),
+        padding: isPortrait
+            ? EdgeInsets.only(right: 16.0, left: 16, top: 64, bottom: 30)
+            : EdgeInsets.only(right: 48.0, left: 32, top: 32, bottom: 30),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,8 +135,7 @@ class _TestState extends State<Test> {
                                     fontWeight: FontWeight.w300,
                                     fontSize: 14,
                                   ),
-                                  text: 'widget.prescription.doctor.prefix + '
-                                      ',',
+                                  text: widget.prescription.doctor.prefix + ' ',
                                 ),
                                 TextSpan(
                                   style: TextStyle(
@@ -141,7 +143,7 @@ class _TestState extends State<Test> {
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
                                   ),
-                                  text: ' widget.prescription.doctor.name,',
+                                  text: widget.prescription.doctor.name,
                                 ),
                               ],
                             ),
@@ -161,12 +163,26 @@ class _TestState extends State<Test> {
                             SizedBox(
                               width: 2,
                             ),
-                            Flexible(
-                              child: Text(
-                                'This prescription is added you, ',
-                                softWrap: true,
-                              ),
-                            ),
+                            widget.prescription.isFilledByDoctor != null &&
+                                    widget.prescription.isFilledByDoctor
+                                ? Flexible(
+                                    child: Text(
+                                      'This prescription was added by your '
+                                      'doctor.',
+                                      softWrap: true,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  )
+                                : Flexible(
+                                    child: Text(
+                                      'This prescription is added you, '
+                                      'recommand your doctor and earn 50% reduction.',
+                                      softWrap: true,
+                                    ),
+                                  ),
                           ],
                         ),
                       ],
@@ -184,5 +200,42 @@ class _TestState extends State<Test> {
         ),
       ),
     );
+  }
+
+  Widget getListPresItems(BuildContext context) {
+    Widget gridLayout = GridView.count(
+      crossAxisCount: 2,
+      physics: NeverScrollableScrollPhysics(),
+      children: List.generate(100, (index) {
+        return Center(
+          child: Text(
+            'Item $index',
+            style: Theme.of(context).textTheme.headline,
+          ),
+        );
+      }),
+    );
+
+    Widget listLayout = Padding(
+      padding: isPortrait
+          ? EdgeInsets.only(right: 4, left: 8)
+          : EdgeInsets.only(right: 48, left: 32),
+      child: ListView.builder(
+          padding: EdgeInsets.all(0),
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          itemCount: widget.prescription.prescriptionItems.length,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (BuildContext context, int index) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: PrescriptionItemWidget(
+                prescriptionItem: widget.prescription.prescriptionItems[index],
+              ),
+            );
+          }),
+    );
+
+    return listLayout;
   }
 }

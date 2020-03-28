@@ -6,34 +6,45 @@ class Prescription {
   String date;
   String place;
   List<PrescriptionItem> prescriptionItems;
+  bool isFilledByDoctor;
 
-  Prescription({this.doctor, this.date, this.place, this.prescriptionItems});
+  Prescription(
+      {this.doctor,
+      this.date,
+      this.place,
+      this.prescriptionItems,
+      this.isFilledByDoctor});
 
   static List<Prescription> prescriptions = [
     new Prescription(
-        doctor: new NestedReference(name: 'Dr. Sondes Kthiri'),
+        doctor: new NestedReference(name: 'Sondes Kthiri', prefix: 'Dr.'),
         date: 'Monday, 12 March 2020',
         place: 'Cabinet Dr. Kthiri, 2010, Centre Medical Soukra, Ariana',
-        prescriptionItems: PrescriptionItem.getPrescriptions),
+        prescriptionItems: PrescriptionItem.getPrescriptions,
+        isFilledByDoctor: true),
     new Prescription(
-        doctor: new NestedReference(name: 'Dr. Sondes Kthiri'),
+        doctor: new NestedReference(name: 'Sondes Kthiri', prefix: 'Dr.'),
         date: 'Monday, 12 March 2020',
         place: 'Cabinet Dr. Kthiri, 2010, Centre Medical Soukra, Ariana',
-        prescriptionItems: PrescriptionItem.getPrescriptions),
+        prescriptionItems: PrescriptionItem.getPrescriptions,
+        isFilledByDoctor: true),
     new Prescription(
-        doctor: new NestedReference(name: 'Dr. Sondes Kthiri'),
+        doctor: new NestedReference(name: 'Sondes Kthiri', prefix: 'Dr.'),
         date: 'Monday, 12 March 2020',
         place: 'Cabinet Dr. Kthiri, 2010, Centre Medical Soukra, Ariana',
-        prescriptionItems: PrescriptionItem.getPrescriptions),
+        prescriptionItems: PrescriptionItem.getPrescriptions,
+        isFilledByDoctor: true),
     new Prescription(
-        doctor: new NestedReference(name: 'Dr. Sondes Kthiri'),
+        doctor: new NestedReference(name: 'Sondes Kthiri', prefix: 'Dr.'),
         date: 'Monday, 12 March 2020',
         place: 'Cabinet Dr. Kthiri, 2010, Centre Medical Soukra, Ariana',
-        prescriptionItems: PrescriptionItem.getPrescriptions),
+        prescriptionItems: PrescriptionItem.getPrescriptions,
+        isFilledByDoctor: true),
     new Prescription(
-        doctor: new NestedReference(name: 'Dr. Sondes Kthiri'),
+        doctor: new NestedReference(name: 'Sondes Kthiri', prefix: 'Dr.'),
         date: 'Monday, 12 March 2020',
         place: 'Cabinet Dr. Kthiri, 2010, Centre Medical Soukra, Ariana',
-        prescriptionItems: PrescriptionItem.getPrescriptions),
+        prescriptionItems: PrescriptionItem.getPrescriptions,
+        isFilledByDoctor: true),
   ];
 }

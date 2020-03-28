@@ -1,7 +1,7 @@
 import 'package:asclepius/models/tab.dart';
 import 'package:asclepius/models/tip.dart';
 import 'package:asclepius/widgets/load_image.dart';
-import 'package:asclepius/widgets/prescription_widget.dart';
+import 'package:asclepius/widgets/prescription_tab_widget.dart';
 import 'package:asclepius/widgets/under_construction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -191,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget getCurrentTab() {
     switch (currentIndex) {
       case 0:
-        return PrescriptionWidget();
+        return PrescriptionTabWidget();
         break;
       default:
         return UnderConstruction();
