@@ -1,5 +1,5 @@
 # Asclepius
-
+Asclepius is a flutter application dedicated to prescriptions' management. This app is open source and made for educational purposes only.
 
 <p align="center">
   <img src="pics/7.gif" width="400" title="hover text">
@@ -9,27 +9,76 @@
 ![alt text](pics/3.png?raw=true "Asclepius GIF")
 ![alt text](pics/5.png?raw=true "Asclepius GIF")
 
-Asclepius is a flutter application dedicated to prescriptions' management. This app is open source and made for educational purposes only.
-
 ## Getting Started
 
-You can download or clone this project and play around with it.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-In you terminal CD to your directory and run this CMD:
+## Prerequisites
 
+You'll need to be having flutter installed in your local machine, if not so, here's the official detailed documentation:
+
+```
+https://flutter.dev/docs/get-started/install
+```
+
+## Installing
+
+A step by step series of examples that tell you how to get a development env running
+
+#### Step 1:
+
+Download or clone this repo by using the link below:
+
+```
 git clone https://github.com/kthirirania/kthirirania-asclepius.git
 
-Make sure that you already installed flutter in your machine.
+```
 
-Open a Simulator or plugin your phone and inside the ssclepius folder run:
+#### Step 2:
 
+Open a Simulator or plugin your phone.
+
+#### Step 3:
+
+Go to project root and execute the following command in console to get the required dependencies:
+
+```
+flutter pub get
+```
+
+```
 flutter run
+```
 
 If you have multiple connected devices run:
 
+```
 flutter devices
+```
 
+```
 flutter run -f [device_id]
+```
+
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+
+## Authors
+
+* **Rania Kthiri** - *Initial work* - [Rania Kthiri](https://github.com/kthirirania)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Hat tip to anyone whose code was used
+* Inspiration
+* etc
+
 
 
 
