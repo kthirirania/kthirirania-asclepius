@@ -1,6 +1,6 @@
-# asclepius
+# Asclepius
 
-![alt text](http://url/to/img.png)
+![alt text](pics/7.gif?raw=true "Asclepius GIF")
 
 Asclepius is a flutter application dedicated to prescriptions' management. This app is open source and made for educational purposes only.
 
