@@ -6,9 +6,9 @@ Asclepius is a flutter application dedicated to prescriptions' management. This 
 </p>
 
 <p align="center">
- <img src="pics/7.gif" width="300" title="screenshot">
- <img src="pics/7.gif" width="300" title="screenshot">
- <img src="pics/7.gif" width="300" title="screenshot">
+ <img src="pics/1.png" width="300" title="screenshot">
+ <img src="pics/3.png" width="300" title="screenshot">
+ <img src="pics/5.png" width="300" title="screenshot">
 </p>
 
 ## Getting Started
@@ -62,11 +62,6 @@ flutter devices
 flutter run -f [device_id]
 ```
 
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
-
 ## Authors
 
 * **Rania Kthiri** - *Initial work* - [Rania Kthiri](https://github.com/kthirirania)
@@ -74,13 +69,6 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
 
 
 
